@@ -19,5 +19,11 @@ pipeline {
       }
     }
 
+    stage('asasa') {
+      steps {
+        echo 'asas'
+      }
+    }
+
   }
 }
