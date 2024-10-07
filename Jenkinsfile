@@ -13,12 +13,6 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
-      steps {
-        echo 'Deploy completed'
-      }
-    }
-
     stage('asasa') {
       steps {
         echo 'asas'
