@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Clone Repository') {
       steps {
-        sh ' git \'https://github.com/AhmedRoul/Rent-Bike-System-API-with-Microservices.git\''
+        git ' git \'https://github.com/AhmedRoul/Rent-Bike-System-API-with-Microservices.git\''
         echo 'done'
       }
     }
