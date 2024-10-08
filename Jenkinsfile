@@ -4,7 +4,8 @@ pipeline {
     stage('build') {
       steps {
         script {
-          sh 'cd Rent Bike System API with Microservices/BikeService && mvn clean compile'
+          cd 'Rent Bike System API with Microservices/BikeService'
+          mvn clean compile
         }
 
       }
