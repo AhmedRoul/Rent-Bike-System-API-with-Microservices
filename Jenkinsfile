@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh ' sh \'cd Rent Bike System API with Microservices/BikeService && mvn clean compile\''
+        bat ' sh \'cd Rent Bike System API with Microservices/BikeService && mvn clean compile\''
       }
     }
 
