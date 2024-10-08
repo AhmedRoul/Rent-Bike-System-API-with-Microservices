@@ -5,7 +5,6 @@ pipeline {
       steps {
         script {
           cd 'Rent Bike System API with Microservices/BikeService'
-          mvn clean compile
         }
 
       }
