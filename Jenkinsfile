@@ -4,6 +4,7 @@ pipeline {
     stage('Clone Repository') {
       steps {
         fileExists 'Rent-Bike-System-API-with-Microservices/.git'
+        echo 'done'
       }
     }
 
