@@ -1,9 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
+    stage('Clone Repository') {
       steps {
-        echo 'complete'
+        sh ' git \'https://github.com/AhmedRoul/Rent-Bike-System-API-with-Microservices.git\''
+        echo 'done'
       }
     }
 
