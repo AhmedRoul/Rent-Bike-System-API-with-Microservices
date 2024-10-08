@@ -3,22 +3,16 @@ pipeline {
   stages {
     stage('Clone Repository') {
       steps {
-        fileExists 'Rent-Bike-System-API-with-Microservices/.git'
-        echo 'done'
+        sh ''' if (!fileExists(\'Rent-Bike-System-API-with-Microservices/.git\')) {
+ echo \'Repository not found. Cloning...\'
+ git url: \'https://github.com/AhmedRoul/Rent-Bike-System-API-with-Microservices.git\', branch: \'main\', credentialsId: \'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\'
+} 
+else {
+  echo \'Repository already exists. Skipping clone.\'
+  }'''
+          echo 'done step !'
+        }
       }
-    }
 
-    stage('Test Stages') {
-      steps {
-        echo 'Done'
-      }
     }
-
-    stage('Deploy') {
-      steps {
-        echo 'run '
-      }
-    }
-
   }
-}
