@@ -4,7 +4,7 @@ pipeline {
     stage('build') {
       steps {
         script {
-          sh 'cd %WORKSPACE%/Rent Bike System API with Microservices/BikeService && mvn clean compile'
+          sh 'cd $WORKSPACE/Rent Bike System API with Microservices/BikeService && mvn clean compile'
         }
 
         echo 'sdada'
