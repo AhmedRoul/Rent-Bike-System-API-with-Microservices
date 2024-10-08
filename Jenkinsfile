@@ -3,7 +3,11 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        echo 'adada'
+        script {
+          sh 'cd %WORKSPACE%/Rent Bike System API with Microservices/BikeService && mvn clean compile'
+        }
+
+        echo 'sdada'
       }
     }
 
