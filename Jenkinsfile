@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Check out') {
       steps {
-        echo 'asasasa'
+        echo 'Check out successfully '
       }
     }
 
@@ -20,6 +20,22 @@ pipeline {
       }
 
       echo 'Build successfully '
+    }
+  }
+
+  stage('Unit Tests') {
+    steps {
+      echo 'Unit Tests successfully'
+      script {
+        def services=["BikeService" ,"UserService","RentalRecordService"]
+
+        // Loop through each service and build it
+        services.each {
+          serviceName ->
+          bat "cd ${env.WORKSPACE}/Rent Bike System API with Microservices/${serviceName} && mvn test"
+        }
+      }
+
     }
   }
 
