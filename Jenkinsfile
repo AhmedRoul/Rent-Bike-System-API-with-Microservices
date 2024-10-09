@@ -3,10 +3,7 @@ pipeline {
   stages {
     stage('Check out') {
       steps {
-        script {
-          checkout scm
-        }
-
+        echo 'asasasa'
       }
     }
 
