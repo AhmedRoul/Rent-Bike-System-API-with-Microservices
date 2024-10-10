@@ -1,7 +1,6 @@
 package com.RentBikeSystem.BikeService;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -10,8 +9,12 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableRabbit
 @EnableCaching
+
+/*
+* #mvn clean install -D"spring.profiles.active=dev,default"
+#mvn spring-boot:run  -D"spring.profiles.active=dev,default"
+* */
 public class BikeServiceApplication {
 	@Bean
 	ModelMapper modelMapper(){

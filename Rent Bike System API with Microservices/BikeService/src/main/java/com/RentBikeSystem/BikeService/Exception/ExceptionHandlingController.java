@@ -1,7 +1,7 @@
 package com.RentBikeSystem.BikeService.Exception;
 
 import com.RentBikeSystem.BikeService.DTO.APIDTO;
-import com.google.protobuf.Api;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
