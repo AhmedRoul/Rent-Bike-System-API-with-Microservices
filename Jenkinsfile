@@ -55,5 +55,43 @@ pipeline {
   }
 }
 
+stage('Build Docker Images') {
+  steps {
+    script {
+      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:register-server ./register-server"
+      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:api-gateway ./api-gateway"
+      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:auth-server ./auth-server"
+      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:bike-server ./BikeService"
+      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:jwt-server ./JWT-server"
+      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:user-server ./UserService"
+    }
+
+  }
+}
+
+stage('Docker Login') {
+  steps {
+    script {
+      sh "echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin"
+    }
+
+  }
+}
+
+stage('Docker Compose Up') {
+  steps {
+    script {
+      // Start the services with Docker Compose
+      sh 'docker-compose up -d'
+    }
+
+  }
+}
+
+}
+environment {
+registry = 'roular/rent-bike-system'
+DOCKER_HUB_CREDENTIALS = 'credentials(\'docker-roular\')'
+DOCKER_IMAGE_PREFIX = 'roular/rent-bike-system'
 }
 }
