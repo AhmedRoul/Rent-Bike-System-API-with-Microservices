@@ -20,6 +20,7 @@ public class RequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         filterChain.doFilter(request, response);
+
       /*  HttpServletRequest httpRequest = (HttpServletRequest) request;
         String remoteAddr = httpRequest.getRemoteAddr();
 

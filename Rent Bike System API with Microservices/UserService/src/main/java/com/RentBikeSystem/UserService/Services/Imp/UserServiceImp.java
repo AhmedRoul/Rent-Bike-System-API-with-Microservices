@@ -1,31 +1,58 @@
 package com.RentBikeSystem.UserService.Services.Imp;
 
+
 import com.RentBikeSystem.UserService.DTO.UserDto;
 import com.RentBikeSystem.UserService.Model.User;
 import com.RentBikeSystem.UserService.Repository.UserRepository;
 import com.RentBikeSystem.UserService.Services.UserService;
-import lombok.AllArgsConstructor;
+
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.Optional;
 
-
 @Service
-public class UserServiceImp implements UserService {
+@Slf4j
+public class UserServiceImp implements UserService  {
     @Autowired
-    UserRepository  userRepository;
+    private  UserRepository  userRepository;
     @Autowired
-    ModelMapper modelMapper;
+     ModelMapper modelMapper;
+
+    @Override
+    public boolean IsExist(String Email) {
+
+        return userRepository.existsByEmail(Email);
+    }
+
+    @Override
+    public UserDto loginUser(String Email, String Password) {
+
+        Optional<User> optionalUser = userRepository.findByEmailAndPassword(Email,Password);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            UserDto  userDto=modelMapper.map(user, UserDto.class);
+            System.out.println("Mapped UserDto: " + userDto);
+            return userDto;
+        } else {
+            return null;
+        }
+    }
 
     @Override
     public UserDto saveUser(UserDto userDto) {
+        log.info(userDto.toString());
         User user=modelMapper.map(userDto,User.class);
+        /*user.setId(null);*/
         User save=userRepository.save(user);
+        log.info(save.toString());
         UserDto savedDto=modelMapper.map(save,UserDto.class);
+        log.info(savedDto.toString());
         return savedDto;
     }
 
@@ -69,8 +96,8 @@ public class UserServiceImp implements UserService {
         {
             User user =modelMapper.map(userDto,User.class);
             User Updated=  userRepository.save(user);
-            UserDto bikeDTOUpdated =modelMapper.map(Updated,UserDto.class);
-            return bikeDTOUpdated;
+            UserDto userDto1 =modelMapper.map(Updated,UserDto.class);
+            return userDto1;
         }
         return null;
     }
@@ -86,9 +113,13 @@ public class UserServiceImp implements UserService {
 
     @Override
     public UserDto getUser(String Email) {
+
         Optional<User> user=userRepository.findByEmail(Email);
+
         if(user.isPresent())
-            return modelMapper.map(user.get(),UserDto.class);
+            return modelMapper.map(user.get(), UserDto.class);
+
+
         return null;
     }
 
@@ -110,4 +141,7 @@ public class UserServiceImp implements UserService {
         }
         return false;
     }
+
+
+
 }

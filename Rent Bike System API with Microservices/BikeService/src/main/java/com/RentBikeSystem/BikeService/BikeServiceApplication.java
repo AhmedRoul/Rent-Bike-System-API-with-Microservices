@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 
 /*
 * #mvn clean install -D"spring.profiles.active=dev,default"
-#mvn spring-boot:run  -D"spring.profiles.active=dev,default"
 * */
 public class BikeServiceApplication {
 	@Bean

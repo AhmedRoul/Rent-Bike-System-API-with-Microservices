@@ -1,0 +1,6 @@
+
+mvn clean install -D"spring.profiles.active=dev,default"
+
+mvn spring-boot:run  -D"spring.profiles.active=dev,default"
+
+

@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BikeDTO {
     private  long id;
+    private  Long idPointOfRental;
 
     @Size(max = 100,min = 6 ,message = "Model name must be between 6 and 100 characters.")
     private String model;

@@ -11,6 +11,8 @@ public interface BikeService {
     BikeDTO SaveBike(BikeDTO bikeDTO);
     BikeDTO getBike(long id);
 
+    boolean ISRent(long idbike);
+
     List<BikeDTO> getAllBikeModel(String Model);
 
     List<BikeDTO> getAllBikeByModelAndLocation(String Location, String Model);

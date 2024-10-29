@@ -26,9 +26,10 @@ public class BikeController {
                 ? new ResponseEntity<>(bikeService.getBike(id), HttpStatus.OK)
                 : new ResponseEntity<>("Id not Exist",HttpStatus.NOT_FOUND);
     }
-
-
-
+    @GetMapping("/availability-rented/{id}")
+    public boolean IsRented(@PathVariable long id){
+        return bikeService.ISRent(id);
+    }
 
     @GetMapping
     @ResponseBody

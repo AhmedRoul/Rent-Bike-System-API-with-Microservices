@@ -17,6 +17,7 @@ public class Bike {
     @Column(name = "bike_id")
     private  long id;
 
+    private  Long idPointOfRental;
     @Column(nullable = false,name  ="model")
 
     private String model;

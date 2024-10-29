@@ -2,6 +2,7 @@ package com.RentBikeSystem.BikeService.Services.Imp;
 
 import com.RentBikeSystem.BikeService.DTO.APIDTO;
 import com.RentBikeSystem.BikeService.DTO.BikeDTO;
+import com.RentBikeSystem.BikeService.Model.AvailabilityStatusBike;
 import com.RentBikeSystem.BikeService.Model.Bike;
 import com.RentBikeSystem.BikeService.Repository.BikeRepository;
 import com.RentBikeSystem.BikeService.Services.BikeService;
@@ -49,6 +50,16 @@ public class BikeServiceImp implements BikeService {
             return modelMapper.map(bikeOptional.get(),BikeDTO.class);
         }
         return null;
+    }
+
+    @Override
+    @Cacheable(value = "bikes", key = "#id")
+    public boolean ISRent(long idbike) {
+        Optional<Bike> bikeOptional= bikeRepository.findById(idbike);
+        if(bikeOptional.isPresent()){
+            return bikeOptional.get().getAvailabilityStatusBike().equals(AvailabilityStatusBike.RENTED);
+        }
+        return false;
     }
 
     @Override
