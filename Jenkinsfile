@@ -58,12 +58,12 @@ pipeline {
 stage('Build Docker Images') {
   steps {
     script {
-      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:register-server ./register-server"
-      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:api-gateway ./api-gateway"
-      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:auth-server ./auth-server"
-      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:bike-server ./BikeService"
-      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:jwt-server ./JWT-server"
-      sh "docker build -t ${DOCKER_IMAGE_PREFIX}:user-server ./UserService"
+      bat "docker build -t ${DOCKER_IMAGE_PREFIX}:register-server ./register-server"
+      bat "docker build -t ${DOCKER_IMAGE_PREFIX}:api-gateway ./api-gateway"
+      bat "docker build -t ${DOCKER_IMAGE_PREFIX}:auth-server ./auth-server"
+      bat "docker build -t ${DOCKER_IMAGE_PREFIX}:bike-server ./BikeService"
+      bat "docker build -t ${DOCKER_IMAGE_PREFIX}:jwt-server ./JWT-server"
+      bat "docker build -t ${DOCKER_IMAGE_PREFIX}:user-server ./UserService"
     }
 
   }
@@ -81,7 +81,6 @@ stage('Docker Login') {
 stage('Docker Compose Up') {
   steps {
     script {
-      // Start the services with Docker Compose
       sh 'docker-compose up -d'
     }
 
