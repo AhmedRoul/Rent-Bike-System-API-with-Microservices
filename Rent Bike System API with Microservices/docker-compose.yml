@@ -5,6 +5,7 @@ services:
     build:
       context: ./register-server
       dockerfile: Dockerfile
+    image: roular/rent-bike-system:register-server
     ports:
       - "8761:8761"
     networks:
@@ -17,6 +18,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9090:9090"
+    image: roular/rent-bike-system:api-gateway
     environment:
       - eureka.client.service-url.defaultZone=http://register-server:8761/eureka
     depends_on:
@@ -31,6 +33,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9095:9095"
+    image: roular/rent-bike-system:auth-server
     environment:
       - eureka.client.service-url.defaultZone=http://register-server:8761/eureka
     depends_on:
@@ -50,6 +53,9 @@ services:
     build:
       context: ./BikeService
       dockerfile: Dockerfile
+
+    image: roular/rent-bike-system:bike-server
+
     networks:
       - network-system
     environment:
@@ -118,6 +124,7 @@ services:
       dockerfile: Dockerfile
     networks:
       - network-system
+    image: roular/rent-bike-system:jwt-server
     environment:
       - eureka.client.service-url.defaultZone=http://register-server:8761/eureka
       - spring.datasource.url=jdbc:postgresql://postgres-sql-db:5432/bike
@@ -143,6 +150,7 @@ services:
       dockerfile: Dockerfile
     networks:
       - network-system
+    image: roular/rent-bike-system:user-server
     environment:
       - eureka.client.service-url.defaultZone=http://register-server:8761/eureka
       - spring.datasource.url=jdbc:postgresql://postgres-sql-db:5432/bike
