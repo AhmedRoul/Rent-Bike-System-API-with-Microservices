@@ -87,18 +87,6 @@ stage('Docker Compose Up') {
   }
 }
 
-stage('d') {
-  steps {
-    echo 'done'
-  }
-}
-
-stage('f') {
-  steps {
-    echo 'ssas'
-  }
-}
-
 }
 environment {
 registry = 'roular/rent-bike-system'
