@@ -93,6 +93,12 @@ stage('d') {
   }
 }
 
+stage('f') {
+  steps {
+    echo 'ssas'
+  }
+}
+
 }
 environment {
 registry = 'roular/rent-bike-system'
